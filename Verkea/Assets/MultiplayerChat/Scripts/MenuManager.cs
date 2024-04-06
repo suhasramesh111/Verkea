@@ -35,7 +35,7 @@ public class MenuManager : MonoBehaviour
             }
             else if(menus[i].open)
             {
-                Debug.Log("menu open is: " + menus[i].menuName);
+                //Debug.Log("menu open is: " + menus[i].menuName);
                 CloseMenu(menus[i]);
             }
         }
@@ -47,7 +47,7 @@ public class MenuManager : MonoBehaviour
         {
             if (menus[i].open)
             {
-                Debug.Log("menu open is: " + menus[i].menuName);
+                //Debug.Log("menu open is: " + menus[i].menuName);
                 CloseMenu(menus[i]);
             }
         }
@@ -57,7 +57,8 @@ public class MenuManager : MonoBehaviour
 
     public void CloseMenu(LoadingMenuScript menu)
     {
-        Debug.Log("menu closed is: " + menu.menuName);
+        //Debug.Log("menu closed is: " + menu.menuName);
         menu.Close();
     }
+
 }
