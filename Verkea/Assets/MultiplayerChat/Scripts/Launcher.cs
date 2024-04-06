@@ -16,6 +16,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] Transform roomListContent;
     [SerializeField] GameObject roomListItemPrefab;
 
+    public LoadingMenuScript roomMenu;
+
 
     void Awake()
     {
@@ -32,6 +34,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
@@ -118,6 +121,22 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
         }
+    }
+
+
+    public void StoreScene()
+    {
+
+        MenuManager.Instance.CloseMenu(roomMenu);
+        Debug.Log("switch to store scene");
+        PhotonNetwork.LoadLevel(1);
+    }
+
+    public void HomeScene()
+    {
+        MenuManager.Instance.CloseMenu(roomMenu);
+        Debug.Log("switch to home scene");
+        PhotonNetwork.LoadLevel(2);
     }
 
 }
