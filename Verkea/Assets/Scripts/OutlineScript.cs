@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI; // Import the UnityEngine.UI namespace for UI components
 
 public class OutlineScript : MonoBehaviour
 {
@@ -15,13 +14,6 @@ public class OutlineScript : MonoBehaviour
         if (ObjectMenuPanel != null)
         {
             ObjectMenuPanel.SetActive(false);
-        }
-
-        // Find the Exit button in the ObjectMenuPanel and add a listener to its onClick event
-        Button exitButton = ObjectMenuPanel.GetComponentInChildren<Button>();
-        if (exitButton != null)
-        {
-            exitButton.onClick.AddListener(OnExitButtonClick);
         }
     }
 
@@ -122,15 +114,5 @@ public class OutlineScript : MonoBehaviour
     {
         // Reset the size of the object to its original size
         obj.transform.localScale = originalScale;
-    }
-
-    // Method to handle the Exit button click event
-    public void OnExitButtonClick()
-    {
-        // Disable the ObjectMenuPanel UI game object
-        if (ObjectMenuPanel != null)
-        {
-            ObjectMenuPanel.SetActive(false);
-        }
     }
 }
