@@ -2540,5 +2540,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesignerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 6428110839528568798, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
+      propertyPath: cameraObj
+      value: 
+      objectReference: {fileID: 1878822759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
+--- !u!1 &1878822759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4329120611962395556, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
+  m_PrefabInstance: {fileID: 1878822758}
+  m_PrefabAsset: {fileID: 0}
