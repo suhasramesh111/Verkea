@@ -48,7 +48,7 @@ public class TransferScript : MonoBehaviourPunCallbacks
     public void SendObjectToOtherPlayer(GameObject objectToSend)
     {
         // Check if we are in the store scene
-        if (SceneManager.GetActiveScene().name == "STORE1 1")
+        if (SceneManager.GetActiveScene().name == "STORE")
         {
             statusText.text = "Sending object to other player...";
             Debug.Log("Sending object to other player...");
@@ -74,7 +74,7 @@ public class TransferScript : MonoBehaviourPunCallbacks
     void ReceiveObjectFromOtherPlayer(string jsonData)
     {
         // Check if we are in the room scene
-        if (SceneManager.GetActiveScene().name == "LIVING ROOM")
+        if (SceneManager.GetActiveScene().name == "LIVINGROOM")
         {
             statusText.text = "Receiving object from other player...";
             Debug.Log("Receiving object from other player...");
