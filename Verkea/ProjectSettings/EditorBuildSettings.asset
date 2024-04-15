@@ -21,4 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LIVING ROOM.unity
     guid: 9f2f2d51d63887641b206816e9ec4f19
   m_configObjects:
+<<<<<<< HEAD
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bc31287542c46a54ca56b5d42cc59721, type: 2}
+=======
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0d078bb1c0df9eb4aba1fb6b09a268d6, type: 2}
+>>>>>>> d1defc31b6443fa859e592e14e56289cd7c23dd4
