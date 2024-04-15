@@ -1,11 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI; // Import the UnityEngine.UI namespace for UI components
 
 public class OutlineScript : MonoBehaviour
 {
     private GameObject lastHoveredObject; // Last object hovered by the reticle
     private Vector3 originalScale; // Original scale of the object
     private Vector3 newSize; // Size of the object after scaling
+    private bool isScaled = false; // Boolean variable to track if the object is scaled
+    public GameObject ObjectMenuPanel; // Reference to the ObjectMenuPanel UI game object
+
+    void Start()
+    {
+        // Disable the ObjectMenuPanel UI game object initially
+        if (ObjectMenuPanel != null)
+        {
+            ObjectMenuPanel.SetActive(false);
+        }
+
+        // Find the Exit button in the ObjectMenuPanel and add a listener to its onClick event
+        Button exitButton = ObjectMenuPanel.GetComponentInChildren<Button>();
+        if (exitButton != null)
+        {
+            exitButton.onClick.AddListener(OnExitButtonClick);
+        }
+    }
 
     void Update()
     {
@@ -22,13 +40,12 @@ public class OutlineScript : MonoBehaviour
             if (lastHoveredObject != null)
             {
                 ResetSize(lastHoveredObject);
+                isScaled = false; // Set isScaled to false when resetting the size
             }
 
             // Check if the object under the reticle has the "Interactable" tag
             if (currentObject != null && currentObject.CompareTag("Interactable"))
             {
-                Debug.Log("Interactable object found: " + currentObject.name);
-
                 // Store the original scale of the object
                 originalScale = currentObject.transform.localScale;
 
@@ -36,6 +53,7 @@ public class OutlineScript : MonoBehaviour
                 newSize = originalScale * 1.8f;
                 SetSize(currentObject, newSize);
                 lastHoveredObject = currentObject;
+                isScaled = true; // Set isScaled to true when scaling the object
             }
             else
             {
@@ -44,18 +62,37 @@ public class OutlineScript : MonoBehaviour
         }
         else if (currentObject == null && lastHoveredObject != null)
         {
-            Debug.Log("No object under reticle ");
             // Reset the size of the object to its original size
             ResetSize(lastHoveredObject);
             lastHoveredObject = null;
+            isScaled = false; // Set isScaled to false when resetting the size
         }
 
-        // Check for T key press to send the object to the other player
-        if (Input.GetKeyDown(KeyCode.T) && lastHoveredObject != null)
+        // Handle input to enable ObjectMenuPanel and adjust its position
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("T key pressed, sending object...");
-            TransferScript transferScript = FindObjectOfType<TransferScript>();
-            transferScript.SendObjectToOtherPlayer(lastHoveredObject);
+            if (isScaled && ObjectMenuPanel != null)
+            {
+                // Enable the ObjectMenuPanel UI game object
+                ObjectMenuPanel.SetActive(true);
+
+                // Set the position of the ObjectMenuPanel 5 units above the scaled object
+                if (lastHoveredObject != null)
+                {
+                    Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 30f;
+                    ObjectMenuPanel.transform.position = panelPosition;
+
+                    // Calculate the rotation needed to face the camera
+                    Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
+                    Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
+
+                    // Apply the rotation offset (180-degree rotation around the y-axis)
+                    rotationToCamera *= Quaternion.Euler(0f, 180f, 0f);
+
+                    // Apply the rotation
+                    ObjectMenuPanel.transform.rotation = rotationToCamera;
+                }
+            }
         }
     }
 
@@ -68,7 +105,7 @@ public class OutlineScript : MonoBehaviour
         // Perform a physics sphere cast to find the object under the reticle
         if (Physics.SphereCast(ray, 0.1f, out hit))
         {
-            Debug.Log("Object hit is " + hit.collider.gameObject.name);
+            Debug.Log("object hit is " + hit.collider.gameObject.name);
             return hit.collider.gameObject;
         }
 
@@ -85,5 +122,15 @@ public class OutlineScript : MonoBehaviour
     {
         // Reset the size of the object to its original size
         obj.transform.localScale = originalScale;
+    }
+
+    // Method to handle the Exit button click event
+    public void OnExitButtonClick()
+    {
+        // Disable the ObjectMenuPanel UI game object
+        if (ObjectMenuPanel != null)
+        {
+            ObjectMenuPanel.SetActive(false);
+        }
     }
 }
