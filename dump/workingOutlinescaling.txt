@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OutlineScript : MonoBehaviour
 {
@@ -27,8 +26,6 @@ public class OutlineScript : MonoBehaviour
             // Check if the object under the reticle has the "Interactable" tag
             if (currentObject != null && currentObject.CompareTag("Interactable"))
             {
-                Debug.Log("Interactable object found: " + currentObject.name);
-
                 // Store the original scale of the object
                 originalScale = currentObject.transform.localScale;
 
@@ -44,18 +41,9 @@ public class OutlineScript : MonoBehaviour
         }
         else if (currentObject == null && lastHoveredObject != null)
         {
-            Debug.Log("No object under reticle ");
             // Reset the size of the object to its original size
             ResetSize(lastHoveredObject);
             lastHoveredObject = null;
-        }
-
-        // Check for T key press to send the object to the other player
-        if (Input.GetKeyDown(KeyCode.T) && lastHoveredObject != null)
-        {
-            Debug.Log("T key pressed, sending object...");
-            TransferScript transferScript = FindObjectOfType<TransferScript>();
-            transferScript.SendObjectToOtherPlayer(lastHoveredObject);
         }
     }
 
@@ -68,7 +56,7 @@ public class OutlineScript : MonoBehaviour
         // Perform a physics sphere cast to find the object under the reticle
         if (Physics.SphereCast(ray, 0.1f, out hit))
         {
-            Debug.Log("Object hit is " + hit.collider.gameObject.name);
+            Debug.Log("object hit is " + hit.collider.gameObject.name);
             return hit.collider.gameObject;
         }
 
