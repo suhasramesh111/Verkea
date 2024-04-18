@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18154661, g: 0.2271898, b: 0.3074084, a: 1}
+  m_IndirectSpecularColor: {r: 0.181546, g: 0.22718903, b: 0.30740726, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3263,7 +3263,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1269023664}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1656394415}
+        m_TargetAssemblyTypeName: OutlineScript, Assembly-CSharp
+        m_MethodName: TryFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1269023664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5973,7 +5985,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1656394415}
         m_TargetAssemblyTypeName: OutlineScript, Assembly-CSharp
-        m_MethodName: OnExitButtonClick
+        m_MethodName: ExitMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7287,6 +7299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2084786825}
+  - component: {fileID: 2084786826}
   m_Layer: 0
   m_Name: Furniture
   m_TagString: Interactable
@@ -7323,6 +7336,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2084786826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084786824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2085353456
 GameObject:
   m_ObjectHideFlags: 0
@@ -8007,31 +8042,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -40.08
+      value: -41.3
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.3
+      value: 42.3
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5946562
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.8039801
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8039,7 +8074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 107.024
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568793, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
