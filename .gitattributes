@@ -3,3 +3,4 @@
 *.meta linguist-generated
 *.prefab linguist-generated
 *.unity linguist-generated
+Verkea/Builds/My[[:space:]]project_Data/resources.assets.resS filter=lfs diff=lfs merge=lfs -text
