@@ -21,20 +21,6 @@ public class FurniturePlacementScript : MonoBehaviourPunCallbacks, IOnEventCallb
         }
     }
 
-    void Start()
-    {
-        // Manual check to verify if the prefab can be loaded
-        GameObject testPrefab = Resources.Load<GameObject>("3Seat3");
-        if (testPrefab != null)
-        {
-            Debug.Log("Prefab found at: " + furniturePath + "3Seat3.prefab");
-        }
-        else
-        {
-            Debug.LogError("Prefab not found at: " + furniturePath + "3Seat3.prefab");
-        }
-    }
-
     public void TryFurniture()
     {
         if (PlayerPrefs.HasKey("SelectedFurniture"))
@@ -70,24 +56,7 @@ public class FurniturePlacementScript : MonoBehaviourPunCallbacks, IOnEventCallb
         {
             object[] data = (object[])photonEvent.CustomData;
             string furnitureName = (string)data[0];
-            InstantiateFurniture(furnitureName);
-        }
-    }
-
-    void InstantiateFurniture(string furnitureName)
-    {
-        string fullPath = furniturePath + furnitureName;
-        GameObject furniturePrefab = Resources.Load<GameObject>(furnitureName);
-
-        if (furniturePrefab != null)
-        {
-            Vector3 spawnPosition = new Vector3(5f, 0f, 5f); // Adjust the position as needed
-            PhotonNetwork.InstantiateRoomObject(furniturePrefab.name, spawnPosition, Quaternion.identity);
-            Debug.Log("Furniture instantiated: " + furniturePrefab.name);
-        }
-        else
-        {
-            Debug.LogError("Furniture prefab not found: " + furnitureName);
+            Debug.Log("Received event to instantiate furniture: " + furnitureName);
         }
     }
 }
