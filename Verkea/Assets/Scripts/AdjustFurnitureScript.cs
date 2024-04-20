@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using Photon.Pun;
@@ -55,7 +56,10 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
 
         // Calculate the position for the new furniture
         Vector3 newPosition = Camera.main.transform.position + Camera.main.transform.forward * 5;
-        newPosition.y = -45; // Adjust the y-coordinate to place the furniture on the floor
+        newPosition.x += 3.0f;
+
+        // Use the character's camera Y-coordinate for the furniture's Y-coordinate
+        newPosition.y = -40;
 
         // Instantiate the new furniture object with a unique name and PhotonView ID
         GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
@@ -68,11 +72,12 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
         newFurniture.name = furnitureName + "_" + photonView.ViewID;
 
         // Adjust the scale of the new furniture
-        newFurniture.transform.localScale = new Vector3(10, 10, 10);
+        newFurniture.transform.localScale = new Vector3(3, 3, 3);
 
         // Add the 'Interactable' tag
         newFurniture.tag = "Interactable";
     }
+
 
     void OnDestroy()
     {
