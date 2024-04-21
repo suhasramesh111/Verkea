@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using Photon.Pun;
@@ -14,7 +13,7 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
 
-    public void OnEvent(ExitGames.Client.Photon.EventData photonEvent)
+    public void OnEvent(EventData photonEvent)
     {
         if (photonEvent.Code == 1)
         {
@@ -61,22 +60,37 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
         // Use the character's camera Y-coordinate for the furniture's Y-coordinate
         newPosition.y = -40;
 
-        // Instantiate the new furniture object with a unique name and PhotonView ID
-        GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
+        // Check for collisions
+        Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.5f);
+        while (hitColliders.Length > 0)
+        {
+            // If there is a collision, move the position a bit to the right along the x-axis
+            newPosition.x += 3.0f;
+            newPosition.z += 2.0f;
+            hitColliders = Physics.OverlapSphere(newPosition, 1.5f);
+        }
 
-        // Assign a unique PhotonView ID
-        PhotonView photonView = newFurniture.GetPhotonView();
-        photonView.ViewID = nextViewId++;
+        // Check if the object is not already instantiated for the local client
+        if (PhotonNetwork.IsMasterClient && GameObject.Find(furnitureName + "_" + nextViewId) == null)
+        {
+            // Instantiate the new furniture object with a unique name and PhotonView ID
+            GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
 
-        // Append a unique identifier to the object name
-        newFurniture.name = furnitureName + "_" + photonView.ViewID;
+            // Assign a unique PhotonView ID
+            PhotonView photonView = newFurniture.GetPhotonView();
+            photonView.ViewID = nextViewId++;
 
-        // Adjust the scale of the new furniture
-        newFurniture.transform.localScale = new Vector3(3, 3, 3);
+            // Append a unique identifier to the object name
+            newFurniture.name = furnitureName + "_" + photonView.ViewID;
 
-        // Add the 'Interactable' tag
-        newFurniture.tag = "Interactable";
+            // Adjust the scale of the new furniture
+            newFurniture.transform.localScale = new Vector3(3, 3, 3);
+
+            // Add the 'Interactable' tag
+            newFurniture.tag = "Interactable";
+        }
     }
+
 
 
     void OnDestroy()
