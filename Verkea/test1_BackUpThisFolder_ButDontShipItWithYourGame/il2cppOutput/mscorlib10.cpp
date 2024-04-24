@@ -364,6 +364,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendCore_m1E27A5F3D1BE52863
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendFormatHelper_mB721541560403777C9190F76D162C918A9A840D1_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendFormat_m14CB447291E6149BCF32E5E37DA21514BAD9C151_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendSpanFormattable_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m9C89D6A499A93EAEB46D21A005E7B7CDA8AF08DA_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_AppendSpanFormattable_TisUInt32_t1833D51FFA667B18A5AA4B8D34DE284F8495D29B_m61F274B553164EF6FB0CB7D16AED9687CE7CA5FC_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* StringBuilder_Append_m3B01AD486432033546C698FB95D3067DCB1A1448_RuntimeMethod_var;
@@ -737,6 +738,13 @@ struct DecoderReplacementFallback_t398AF05FDF32BD471A1678894D1F1A81DDBEE3B0  : p
 {
 	// System.String System.Text.DecoderReplacementFallback::_strDefault
 	String_t* ____strDefault_2;
+};
+
+// System.Double
+struct Double_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F 
+{
+	// System.Double System.Double::m_value
+	double ___m_value_0;
 };
 
 // System.Text.EncoderNLS
@@ -1360,6 +1368,10 @@ struct Char_t521A6F19B456D956AF452D926C32709DC03D6B17_StaticFields
 
 // System.Text.DecoderReplacementFallback
 
+// System.Double
+
+// System.Double
+
 // System.Text.EncoderNLS
 
 // System.Text.EncoderNLS
@@ -1821,6 +1833,8 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Span_1__ctor_m5BFF7914106412
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_AppendSpanFormattable_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m9C89D6A499A93EAEB46D21A005E7B7CDA8AF08DA_gshared (StringBuilder_t* __this, uint8_t ___0_value, const RuntimeMethod* method) ;
 // System.Text.StringBuilder System.Text.StringBuilder::AppendSpanFormattable<System.Int32>(T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570_gshared (StringBuilder_t* __this, int32_t ___0_value, const RuntimeMethod* method) ;
+// System.Text.StringBuilder System.Text.StringBuilder::AppendSpanFormattable<System.Double>(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD_gshared (StringBuilder_t* __this, double ___0_value, const RuntimeMethod* method) ;
 // System.Text.StringBuilder System.Text.StringBuilder::AppendSpanFormattable<System.UInt32>(T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_AppendSpanFormattable_TisUInt32_t1833D51FFA667B18A5AA4B8D34DE284F8495D29B_m61F274B553164EF6FB0CB7D16AED9687CE7CA5FC_gshared (StringBuilder_t* __this, uint32_t ___0_value, const RuntimeMethod* method) ;
 // System.Int32 System.ReadOnlySpan`1<System.Char>::get_Length()
@@ -1953,6 +1967,11 @@ inline StringBuilder_t* StringBuilder_AppendSpanFormattable_TisByte_t94D9231AC21
 inline StringBuilder_t* StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570 (StringBuilder_t* __this, int32_t ___0_value, const RuntimeMethod* method)
 {
 	return ((  StringBuilder_t* (*) (StringBuilder_t*, int32_t, const RuntimeMethod*))StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570_gshared)(__this, ___0_value, method);
+}
+// System.Text.StringBuilder System.Text.StringBuilder::AppendSpanFormattable<System.Double>(T)
+inline StringBuilder_t* StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD (StringBuilder_t* __this, double ___0_value, const RuntimeMethod* method)
+{
+	return ((  StringBuilder_t* (*) (StringBuilder_t*, double, const RuntimeMethod*))StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD_gshared)(__this, ___0_value, method);
 }
 // System.Text.StringBuilder System.Text.StringBuilder::AppendSpanFormattable<System.UInt32>(T)
 inline StringBuilder_t* StringBuilder_AppendSpanFormattable_TisUInt32_t1833D51FFA667B18A5AA4B8D34DE284F8495D29B_m61F274B553164EF6FB0CB7D16AED9687CE7CA5FC (StringBuilder_t* __this, uint32_t ___0_value, const RuntimeMethod* method)
@@ -4565,6 +4584,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_Append_m283B61
 		int32_t L_0 = ___0_value;
 		StringBuilder_t* L_1;
 		L_1 = StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570(__this, L_0, StringBuilder_AppendSpanFormattable_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m7B15D251663E1D9C147CD9DA1A8908CACF877570_RuntimeMethod_var);
+		return L_1;
+	}
+}
+// System.Text.StringBuilder System.Text.StringBuilder::Append(System.Double)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StringBuilder_t* StringBuilder_Append_m078D9861582DCD6037F533DF9C2FFEF0A54269E0 (StringBuilder_t* __this, double ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		double L_0 = ___0_value;
+		StringBuilder_t* L_1;
+		L_1 = StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD(__this, L_0, StringBuilder_AppendSpanFormattable_TisDouble_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F_m17DF3F52DF42F03D70B1F2AC981425034B8D29DD_RuntimeMethod_var);
 		return L_1;
 	}
 }

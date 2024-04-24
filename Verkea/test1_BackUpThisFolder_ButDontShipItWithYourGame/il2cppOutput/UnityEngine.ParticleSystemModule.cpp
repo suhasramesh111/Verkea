@@ -23,6 +23,8 @@ struct ParticleU5BU5D_tE2CC7CC8844B6F592CC26DE7B533D8BC74C9BEC7;
 struct AnimationCurve_tCBFFAAD05CEBB35EF8D8631BD99914BE1A6BB354;
 // UnityEngine.Mesh
 struct Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4;
+// UnityEngine.MeshRenderer
+struct MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE;
 // UnityEngine.ParticleSystem
 struct ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1;
 // UnityEngine.ParticleSystemRenderer
@@ -272,6 +274,23 @@ struct MinMaxCurve_t812D571297EED6498776CC58949A42B172E60E23
 	float ___m_ConstantMax_5;
 };
 
+// UnityEngine.ParticleSystem/ShapeModule
+struct ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2 
+{
+	// UnityEngine.ParticleSystem UnityEngine.ParticleSystem/ShapeModule::m_ParticleSystem
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem_0;
+};
+// Native definition for P/Invoke marshalling of UnityEngine.ParticleSystem/ShapeModule
+struct ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_pinvoke
+{
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem_0;
+};
+// Native definition for COM marshalling of UnityEngine.ParticleSystem/ShapeModule
+struct ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_com
+{
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem_0;
+};
+
 // UnityEngine.Object
 struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C  : public RuntimeObject
 {
@@ -409,6 +428,11 @@ struct Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF  : public Component_t3
 {
 };
 
+// UnityEngine.MeshRenderer
+struct MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE  : public Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF
+{
+};
+
 // UnityEngine.ParticleSystemRenderer
 struct ParticleSystemRenderer_t576C271A363A738A6C576D4C6AEFB3B5B23E46C4  : public Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF
 {
@@ -514,6 +538,10 @@ struct Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_StaticFields
 
 // UnityEngine.ParticleSystem/MinMaxCurve
 
+// UnityEngine.ParticleSystem/ShapeModule
+
+// UnityEngine.ParticleSystem/ShapeModule
+
 // UnityEngine.Object
 struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_StaticFields
 {
@@ -546,6 +574,10 @@ struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_StaticFields
 // UnityEngine.Renderer
 
 // UnityEngine.Renderer
+
+// UnityEngine.MeshRenderer
+
+// UnityEngine.MeshRenderer
 
 // UnityEngine.ParticleSystemRenderer
 
@@ -644,6 +676,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParticleSystem_Emit_Injected_mC5638D07E5
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MainModule__ctor_m5F7D2DD815C741DE3FA18A0C1BB2F2776612EF7A (MainModule_tC7ECD8330C14B0808478A748048988A6085CE2A9* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ParticleSystem/EmissionModule::.ctor(UnityEngine.ParticleSystem)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmissionModule__ctor_m6AE98CC2103BECB52B7551D1304E733AE8BD70B1 (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method) ;
+// System.Void UnityEngine.ParticleSystem/ShapeModule::.ctor(UnityEngine.ParticleSystem)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule__ctor_m951B06AF6BDA194E8111B2B72C104562F41CB0AD (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ParticleSystem/ForceOverLifetimeModule::.ctor(UnityEngine.ParticleSystem)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ForceOverLifetimeModule__ctor_m8BDABA4D082F2EA2DECBCECA90B48C34446C0C25 (ForceOverLifetimeModule_t4859776EAF945AEA86044CAB63CA7A8AC8C14976* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ParticleSystem/Particle::set_position(UnityEngine.Vector3)
@@ -688,6 +722,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t MainModule_get_maxParticles_m7E3A0D11
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmissionModule_get_rateOverTime_Injected_m6D3C3402BFBF2A85206FA6017D736DEEB342EEE2 (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* ___0__unity_self, MinMaxCurve_t812D571297EED6498776CC58949A42B172E60E23* ___1_ret, const RuntimeMethod* method) ;
 // UnityEngine.ParticleSystem/MinMaxCurve UnityEngine.ParticleSystem/EmissionModule::get_rateOverTime()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MinMaxCurve_t812D571297EED6498776CC58949A42B172E60E23 EmissionModule_get_rateOverTime_m1FCBF31B7620FE289F7623CB2B89AB4D4F985137 (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* __this, const RuntimeMethod* method) ;
+// UnityEngine.MeshRenderer UnityEngine.ParticleSystem/ShapeModule::get_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* ___0__unity_self, const RuntimeMethod* method) ;
+// UnityEngine.MeshRenderer UnityEngine.ParticleSystem/ShapeModule::get_meshRenderer()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ShapeModule_get_meshRenderer_m5D9ED8C01FF6A25113E0A29BBCDA2480EAD3CA2F (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.ParticleSystem/ShapeModule::set_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&,UnityEngine.MeshRenderer)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710 (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* ___0__unity_self, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___1_value, const RuntimeMethod* method) ;
+// System.Void UnityEngine.ParticleSystem/ShapeModule::set_meshRenderer(UnityEngine.MeshRenderer)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule_set_meshRenderer_m25111B1DC9F173FE054264094DB19564D375D1D6 (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___0_value, const RuntimeMethod* method) ;
 // System.Void UnityEngine.ParticleSystem/ForceOverLifetimeModule::get_x_Injected(UnityEngine.ParticleSystem/ForceOverLifetimeModule&,UnityEngine.ParticleSystem/MinMaxCurve&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ForceOverLifetimeModule_get_x_Injected_m9C2043CB7D35B584E0FD14AC149938591DC6D49D (ForceOverLifetimeModule_t4859776EAF945AEA86044CAB63CA7A8AC8C14976* ___0__unity_self, MinMaxCurve_t812D571297EED6498776CC58949A42B172E60E23* ___1_ret, const RuntimeMethod* method) ;
 // UnityEngine.ParticleSystem/MinMaxCurve UnityEngine.ParticleSystem/ForceOverLifetimeModule::get_x()
@@ -936,6 +978,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR EmissionModule_t0F469FA4A08003F6D9C610D2F716A
 IL_000a:
 	{
 		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 L_1 = V_0;
+		return L_1;
+	}
+}
+// UnityEngine.ParticleSystem/ShapeModule UnityEngine.ParticleSystem::get_shape()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2 ParticleSystem_get_shape_mD7F072CC18587858138AA7B3A882995493AA7C80 (ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* __this, const RuntimeMethod* method) 
+{
+	ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2 L_0;
+		memset((&L_0), 0, sizeof(L_0));
+		ShapeModule__ctor_m951B06AF6BDA194E8111B2B72C104562F41CB0AD((&L_0), __this, /*hidden argument*/NULL);
+		V_0 = L_0;
+		goto IL_000a;
+	}
+
+IL_000a:
+	{
+		ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2 L_1 = V_0;
 		return L_1;
 	}
 }
@@ -1257,6 +1318,114 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmissionModule_get_rateOverTime_Injected
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (EmissionModule_get_rateOverTime_Injected_m6D3C3402BFBF2A85206FA6017D736DEEB342EEE2_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.ParticleSystem/EmissionModule::get_rateOverTime_Injected(UnityEngine.ParticleSystem/EmissionModule&,UnityEngine.ParticleSystem/MinMaxCurve&)");
 	_il2cpp_icall_func(___0__unity_self, ___1_ret);
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Conversion methods for marshalling of: UnityEngine.ParticleSystem/ShapeModule
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_pinvoke(const ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2& unmarshaled, ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_pinvoke& marshaled)
+{
+	Exception_t* ___m_ParticleSystem_0Exception = il2cpp_codegen_get_marshal_directive_exception("Cannot marshal field 'm_ParticleSystem' of type 'ShapeModule': Reference type field marshaling is not supported.");
+	IL2CPP_RAISE_MANAGED_EXCEPTION(___m_ParticleSystem_0Exception, NULL);
+}
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_pinvoke_back(const ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_pinvoke& marshaled, ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2& unmarshaled)
+{
+	Exception_t* ___m_ParticleSystem_0Exception = il2cpp_codegen_get_marshal_directive_exception("Cannot marshal field 'm_ParticleSystem' of type 'ShapeModule': Reference type field marshaling is not supported.");
+	IL2CPP_RAISE_MANAGED_EXCEPTION(___m_ParticleSystem_0Exception, NULL);
+}
+// Conversion method for clean up from marshalling of: UnityEngine.ParticleSystem/ShapeModule
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_pinvoke_cleanup(ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_pinvoke& marshaled)
+{
+}
+// Conversion methods for marshalling of: UnityEngine.ParticleSystem/ShapeModule
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_com(const ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2& unmarshaled, ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_com& marshaled)
+{
+	Exception_t* ___m_ParticleSystem_0Exception = il2cpp_codegen_get_marshal_directive_exception("Cannot marshal field 'm_ParticleSystem' of type 'ShapeModule': Reference type field marshaling is not supported.");
+	IL2CPP_RAISE_MANAGED_EXCEPTION(___m_ParticleSystem_0Exception, NULL);
+}
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_com_back(const ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_com& marshaled, ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2& unmarshaled)
+{
+	Exception_t* ___m_ParticleSystem_0Exception = il2cpp_codegen_get_marshal_directive_exception("Cannot marshal field 'm_ParticleSystem' of type 'ShapeModule': Reference type field marshaling is not supported.");
+	IL2CPP_RAISE_MANAGED_EXCEPTION(___m_ParticleSystem_0Exception, NULL);
+}
+// Conversion method for clean up from marshalling of: UnityEngine.ParticleSystem/ShapeModule
+IL2CPP_EXTERN_C void ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshal_com_cleanup(ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2_marshaled_com& marshaled)
+{
+}
+// System.Void UnityEngine.ParticleSystem/ShapeModule::.ctor(UnityEngine.ParticleSystem)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule__ctor_m951B06AF6BDA194E8111B2B72C104562F41CB0AD (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method) 
+{
+	{
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_0 = ___0_particleSystem;
+		__this->___m_ParticleSystem_0 = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ParticleSystem_0), (void*)L_0);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ShapeModule__ctor_m951B06AF6BDA194E8111B2B72C104562F41CB0AD_AdjustorThunk (RuntimeObject* __this, ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___0_particleSystem, const RuntimeMethod* method)
+{
+	ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2*>(__this + _offset);
+	ShapeModule__ctor_m951B06AF6BDA194E8111B2B72C104562F41CB0AD(_thisAdjusted, ___0_particleSystem, method);
+}
+// UnityEngine.MeshRenderer UnityEngine.ParticleSystem/ShapeModule::get_meshRenderer()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ShapeModule_get_meshRenderer_m5D9ED8C01FF6A25113E0A29BBCDA2480EAD3CA2F (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, const RuntimeMethod* method) 
+{
+	{
+		MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* L_0;
+		L_0 = ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A(__this, NULL);
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C  MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ShapeModule_get_meshRenderer_m5D9ED8C01FF6A25113E0A29BBCDA2480EAD3CA2F_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2*>(__this + _offset);
+	MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* _returnValue;
+	_returnValue = ShapeModule_get_meshRenderer_m5D9ED8C01FF6A25113E0A29BBCDA2480EAD3CA2F(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Void UnityEngine.ParticleSystem/ShapeModule::set_meshRenderer(UnityEngine.MeshRenderer)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule_set_meshRenderer_m25111B1DC9F173FE054264094DB19564D375D1D6 (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* __this, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___0_value, const RuntimeMethod* method) 
+{
+	{
+		MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* L_0 = ___0_value;
+		ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710(__this, L_0, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ShapeModule_set_meshRenderer_m25111B1DC9F173FE054264094DB19564D375D1D6_AdjustorThunk (RuntimeObject* __this, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___0_value, const RuntimeMethod* method)
+{
+	ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2*>(__this + _offset);
+	ShapeModule_set_meshRenderer_m25111B1DC9F173FE054264094DB19564D375D1D6(_thisAdjusted, ___0_value, method);
+}
+// UnityEngine.MeshRenderer UnityEngine.ParticleSystem/ShapeModule::get_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* ___0__unity_self, const RuntimeMethod* method) 
+{
+	typedef MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* (*ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A_ftn) (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2*);
+	static ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (ShapeModule_get_meshRenderer_Injected_mADE4769725FFD2D0C1A9829DBBE071E054BAE97A_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.ParticleSystem/ShapeModule::get_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&)");
+	MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* icallRetVal = _il2cpp_icall_func(___0__unity_self);
+	return icallRetVal;
+}
+// System.Void UnityEngine.ParticleSystem/ShapeModule::set_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&,UnityEngine.MeshRenderer)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710 (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2* ___0__unity_self, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE* ___1_value, const RuntimeMethod* method) 
+{
+	typedef void (*ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710_ftn) (ShapeModule_tAA38A0C5305DF2F9D96F89D4B8F762E2D034D8B2*, MeshRenderer_t4B7747212F0B88244BB7790C61AE124BFC15BAAE*);
+	static ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (ShapeModule_set_meshRenderer_Injected_mF901BFADC251B4E0FC233959AB7433F815034710_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.ParticleSystem/ShapeModule::set_meshRenderer_Injected(UnityEngine.ParticleSystem/ShapeModule&,UnityEngine.MeshRenderer)");
+	_il2cpp_icall_func(___0__unity_self, ___1_value);
 }
 #ifdef __clang__
 #pragma clang diagnostic pop
