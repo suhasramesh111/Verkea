@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
+using Photon.Voice.PUN;
+using Photon.Voice.Unity;
+
 
 public class GlobalMenuController : MonoBehaviour
 {
@@ -11,6 +17,7 @@ public class GlobalMenuController : MonoBehaviour
     private Vector3 initialPosition; // Store the initial position of the camera
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
+    private Button[] menuButtons; // Array to store menu buttons
 
     void Start()
     {
@@ -24,6 +31,9 @@ public class GlobalMenuController : MonoBehaviour
             initialPosition = mainCamera.transform.position; // Store the initial position of the camera
             initialRotation = mainCamera.transform.rotation; // Store the initial rotation of the camera
         }
+
+        // Get all buttons in the menu
+        menuButtons = globalMenu.GetComponentsInChildren<Button>();
     }
 
     void Update()
@@ -32,12 +42,17 @@ public class GlobalMenuController : MonoBehaviour
         {
             ToggleGlobalMenu(); // Toggle the global menu when 'G' key is pressed
         }
-        else if (menuActive && Input.GetKeyDown(KeyCode.DownArrow))
+        else if (menuActive)
         {
-            Selectable nextButton = GetNextButton();
-            if (nextButton != null)
+            // Handle manual navigation with arrow keys
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                nextButton.Select();
+                NavigateMenu(Input.GetKeyDown(KeyCode.DownArrow));
+            }
+            // Handle Enter key press to invoke button click event
+            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                InvokeSelectedButton();
             }
         }
     }
@@ -65,7 +80,7 @@ public class GlobalMenuController : MonoBehaviour
                     outlineObject.SetActive(false);
                 }
 
-                // Highlight the Resume button
+                // Set the initial selected button
                 if (resumeButton != null)
                 {
                     resumeButton.Select();
@@ -91,14 +106,48 @@ public class GlobalMenuController : MonoBehaviour
         }
     }
 
-    private Selectable GetNextButton()
+    void NavigateMenu(bool moveDown)
     {
-        Selectable[] selectables = globalMenu.GetComponentsInChildren<Selectable>(true);
-        Selectable currentButton = EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>();
+        int currentIndex = GetSelectedButtonIndex();
 
-        int currentIndex = System.Array.IndexOf(selectables, currentButton);
-        int nextIndex = (currentIndex + 1) % selectables.Length;
+        if (currentIndex != -1)
+        {
+            int nextIndex = currentIndex + (moveDown ? 1 : -1);
+            nextIndex = Mathf.Clamp(nextIndex, 0, menuButtons.Length - 1);
+            menuButtons[nextIndex].Select();
+        }
+    }
 
-        return selectables[nextIndex];
+    void InvokeSelectedButton()
+    {
+        Button selectedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        if (selectedButton != null)
+        {
+            selectedButton.onClick.Invoke();
+        }
+    }
+
+    int GetSelectedButtonIndex()
+    {
+        for (int i = 0; i < menuButtons.Length; i++)
+        {
+            if (menuButtons[i].gameObject == EventSystem.current.currentSelectedGameObject)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void BacktoLobby()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Lobby");
+        MenuManager.Instance.OpenMenu("Loading");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
