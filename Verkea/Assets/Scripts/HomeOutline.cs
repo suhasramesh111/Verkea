@@ -14,6 +14,8 @@ public class HomeOutline : MonoBehaviourPun
     public TextMeshProUGUI AcceptText; // Reference to TextMeshPro component
     private Dictionary<GameObject, Vector3> originalSizes = new Dictionary<GameObject, Vector3>();
     private bool isRotating = false;
+    private bool isObjectAttached = false; // Flag to track if the highlighted object is attached to the raycast
+    private GameObject highlightedObject; // Reference to the highlighted object
     private float rotationSpeed = 50f; // Adjust rotation speed as needed
 
     void Awake()
@@ -32,8 +34,11 @@ public class HomeOutline : MonoBehaviourPun
         {
             if (lastHoveredObject != null)
             {
-                ResetSize(lastHoveredObject);
-                isScaled = false;
+                if (!isObjectAttached) // Check if not attached
+                {
+                    ResetSize(lastHoveredObject);
+                    isScaled = false;
+                }
             }
 
             if (currentObject != null && currentObject.CompareTag("Interactable"))
@@ -43,16 +48,19 @@ public class HomeOutline : MonoBehaviourPun
                     originalSizes[currentObject] = currentObject.transform.localScale;
                 }
 
-                SetSize(currentObject, currentObject.transform.localScale * 1.1f);
-                lastHoveredObject = currentObject;
-                isScaled = true;
+                if (!isObjectAttached) // Check if not attached
+                {
+                    SetSize(currentObject, currentObject.transform.localScale * 1.1f);
+                    lastHoveredObject = currentObject;
+                    isScaled = true;
+                }
             }
             else
             {
                 lastHoveredObject = null;
             }
         }
-        else if (currentObject == null && lastHoveredObject != null)
+        else if (currentObject == null && lastHoveredObject != null && !isObjectAttached) // Check if not attached
         {
             ResetSize(lastHoveredObject);
             lastHoveredObject = null;
@@ -94,6 +102,18 @@ public class HomeOutline : MonoBehaviourPun
         {
             RotateObject(lastHoveredObject);
         }
+
+        // Check if T key is pressed
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ToggleObjectAttachment(); // Toggle object attachment
+        }
+
+        // Move the highlighted object with the raycast if it is attached
+        if (isObjectAttached)
+        {
+            MoveObjectWithRaycast();
+        }
     }
 
     GameObject GetObjectUnderReticle()
@@ -130,6 +150,42 @@ public class HomeOutline : MonoBehaviourPun
     {
         obj.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
+
+    void ToggleObjectAttachment()
+    {
+        if (!isObjectAttached && lastHoveredObject != null)
+        {
+            isObjectAttached = true;
+            highlightedObject = lastHoveredObject;
+            if (isScaled) // Check if scaled
+            {
+                ResetSize(highlightedObject);
+                isScaled = false;
+            }
+        }
+        else
+        {
+            isObjectAttached = false;
+        }
+    }
+
+    void MoveObjectWithRaycast()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            // Check if the hit object is the highlighted object
+            if (hit.collider.gameObject == highlightedObject)
+            {
+                // Set the position of the attached object to the intersection point
+                highlightedObject.transform.position = hit.point;
+            }
+        }
+    }
+
+
 
     public void ExitMenu()
     {
@@ -177,7 +233,6 @@ public class HomeOutline : MonoBehaviourPun
         Debug.Log("REJECTTT clicked ");
         if (lastInteractedObject != null)
         {
-
             lastInteractedObject.SetActive(false);
             ObjectMenuPanel.SetActive(false);
         }
