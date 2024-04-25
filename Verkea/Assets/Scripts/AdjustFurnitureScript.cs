@@ -4,48 +4,26 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
+public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
 {
+    public static AdjustFurnitureScript Instance; // Singleton Instance
     private int nextViewId = 1000; // Starting from a higher number to avoid conflicts
 
-    void Start()
+    void Awake()
     {
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void OnEvent(ExitGames.Client.Photon.EventData photonEvent)
+    public void AdjustFurniture(string furnitureName)
     {
-        if (photonEvent.Code == 1)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            string furnitureName = (string)data[0];
-            StartCoroutine(WaitAndAdjustFurniture(furnitureName));
-        }
-        else if (photonEvent.Code == 202) // The custom operation code to set ownership
-        {
-            object[] content = (object[])photonEvent.CustomData;
-            if (content != null && content.Length == 3)
-            {
-                int viewId = (int)content[0];
-                int ownerId = (int)content[1];
-                byte[] data = (byte[])content[2];
-
-                PhotonView photonView = PhotonNetwork.GetPhotonView(viewId);
-                if (photonView != null)
-                {
-                    photonView.OwnerActorNr = ownerId;
-                    photonView.RequestOwnership();
-                }
-                else
-                {
-                    Debug.LogErrorFormat("Failed to find a PhotonView with ID={0} for incoming OwnershipUpdate event (newOwnerActorNumber={1}), sender={2}. If you load scenes, make sure to pause the message queue.", viewId, ownerId, photonEvent.Sender);
-                }
-            }
-            else
-            {
-                Debug.LogErrorFormat("Invalid content in OwnershipUpdate event: {0}", photonEvent.ToStringFull());
-            }
-        }
+        StartCoroutine(WaitAndAdjustFurniture(furnitureName));
     }
 
     IEnumerator WaitAndAdjustFurniture(string furnitureName)
@@ -55,10 +33,20 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
 
         // Calculate the position for the new furniture
         Vector3 newPosition = Camera.main.transform.position + Camera.main.transform.forward * 5;
-        newPosition.x += 3.0f;
+        newPosition.x += 5.0f;
 
         // Use the character's camera Y-coordinate for the furniture's Y-coordinate
         newPosition.y = -40;
+
+        // Check for collisions
+        Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.5f);
+        while (hitColliders.Length > 0)
+        {
+            // If there is a collision, move the position a bit to the right along the x-axis and forward along the z-axis
+            newPosition.x += 3.0f;
+            newPosition.z += 2.0f;
+            hitColliders = Physics.OverlapSphere(newPosition, 2.5f);
+        }
 
         // Instantiate the new furniture object with a unique name and PhotonView ID
         GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
@@ -71,15 +59,9 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks, IOnEventCallback
         newFurniture.name = furnitureName + "_" + photonView.ViewID;
 
         // Adjust the scale of the new furniture
-        newFurniture.transform.localScale = new Vector3(3, 3, 3);
+        newFurniture.transform.localScale = new Vector3(8, 8, 8);
 
         // Add the 'Interactable' tag
         newFurniture.tag = "Interactable";
-    }
-
-
-    void OnDestroy()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 }

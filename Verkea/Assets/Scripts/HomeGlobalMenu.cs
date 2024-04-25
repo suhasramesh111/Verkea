@@ -71,12 +71,14 @@ public class HomeGlobalMenu : MonoBehaviour
                 menuActive = true;
                 globalMenu.SetActive(true); // Enable the global menu
                 Time.timeScale = 0f; // Freeze the game
+                /*
                 if (mainCamera != null)
                 {
                     // Freeze the camera position and rotation by setting them to the initial values
                     mainCamera.transform.position = initialPosition;
                     mainCamera.transform.rotation = initialRotation;
                 }
+                */
 
                 // Disable the OutlineObject
                 if (outlineObject != null)
