@@ -143,7 +143,8 @@ public class GlobalMenuController : MonoBehaviour
     {
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Lobby");
-        MenuManager.Instance.OpenMenu("Loading");
+        //MenuManager.Instance.OpenMenu("Loading");
+        
     }
 
     public void Quit()

@@ -28,16 +28,19 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        Debug.Log("Starting");
     }
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
+        Debug.Log("Connection");
     }
 
     public override void OnJoinedLobby()
     {
         MenuManager.Instance.OpenMenu("Title");
+        Debug.Log("Joined Lobby");
     }
 
     public void CreateRoom()
