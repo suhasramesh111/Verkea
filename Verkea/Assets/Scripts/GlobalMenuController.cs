@@ -6,10 +6,13 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Voice.PUN;
 using Photon.Voice.Unity;
-
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 
 public class GlobalMenuController : MonoBehaviour
 {
+    public TextMeshProUGUI StoreCheckoutText;
     public GameObject globalMenu; // Reference to the global menu GameObject
     public Camera mainCamera; // Reference to the main camera
     public GameObject outlineObject; // Reference to the OutlineObject
@@ -138,7 +141,38 @@ public class GlobalMenuController : MonoBehaviour
         }
         return -1;
     }
+    public void StoreCheckout()
+    {
+        if (StoreCheckoutText != null)
+        {
+            StoreCheckoutText.gameObject.SetActive(true);
 
+            // Calculate the position in front of the camera
+            Vector3 textPosition = Camera.main.transform.position + Camera.main.transform.forward * 2f;
+            StoreCheckoutText.transform.position = textPosition;
+
+            // Calculate the rotation to face the camera
+            Vector3 directionToCamera = Camera.main.transform.position - StoreCheckoutText.transform.position;
+            Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
+            rotationToCamera *= Quaternion.Euler(0f, 180f, 0f); // Adjust rotation as needed
+
+            // Apply the rotation
+            StoreCheckoutText.transform.rotation = rotationToCamera;
+
+            // Start coroutine to deactivate the text after 3 seconds
+            StartCoroutine(DeactivateStoreCheckoutText());
+
+
+        }
+    }
+    IEnumerator DeactivateStoreCheckoutText()
+    {
+        globalMenu.SetActive(false);
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(3f);
+        Application.Quit();
+
+    }
     public void BacktoLobby()
     {
         PhotonNetwork.LeaveRoom();
@@ -151,9 +185,5 @@ public class GlobalMenuController : MonoBehaviour
     {
         Application.Quit();
     }
-
-
-
-
 
 }
