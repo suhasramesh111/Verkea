@@ -57,6 +57,8 @@ public class FurniturePlacementScript : MonoBehaviourPunCallbacks, IOnEventCallb
             object[] data = (object[])photonEvent.CustomData;
             string furnitureName = (string)data[0];
             Debug.Log("Received event to instantiate furniture: " + furnitureName);
+
+            AdjustFurnitureScript.Instance.AdjustFurniture(furnitureName);
         }
     }
 }
