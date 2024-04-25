@@ -125,6 +125,7 @@ public class OutlineScript : MonoBehaviourPun
             Debug.Log("trying : " + furnitureName);
             PlayerPrefs.SetString("SelectedFurniture", furnitureName);
             FurniturePlacementScript.Instance.TryFurniture();
+            ObjectMenuPanel.SetActive(false);
         }
     }
 
