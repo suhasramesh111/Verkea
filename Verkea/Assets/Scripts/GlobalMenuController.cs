@@ -21,7 +21,7 @@ public class GlobalMenuController : MonoBehaviour
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
     private Button[] menuButtons; // Array to store menu buttons
-    private float distanceFromCamera = 2f; // Adjust as needed
+    private float distanceFromCamera = 4f; // Adjust as needed
 
     void Start()
     {
