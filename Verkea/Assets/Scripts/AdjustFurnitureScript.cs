@@ -36,7 +36,7 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
         newPosition.x += 5.0f;
 
         // Use the character's camera Y-coordinate for the furniture's Y-coordinate
-        newPosition.y = -40;
+        newPosition.y = -40f;
 
         // Check for collisions
         Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.5f);

@@ -21,6 +21,7 @@ public class GlobalMenuController : MonoBehaviour
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
     private Button[] menuButtons; // Array to store menu buttons
+    private float distanceFromCamera = 2f; // Adjust as needed
 
     void Start()
     {
@@ -41,22 +42,9 @@ public class GlobalMenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) || Input.GetButton("js11"))
         {
             ToggleGlobalMenu(); // Toggle the global menu when 'G' key is pressed
-        }
-        else if (menuActive)
-        {
-            // Handle manual navigation with arrow keys
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                NavigateMenu(Input.GetKeyDown(KeyCode.DownArrow));
-            }
-            // Handle Enter key press to invoke button click event
-            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                InvokeSelectedButton();
-            }
         }
     }
 
@@ -70,23 +58,19 @@ public class GlobalMenuController : MonoBehaviour
                 menuActive = true;
                 globalMenu.SetActive(true); // Enable the global menu
                 Time.timeScale = 0f; // Freeze the game
-                /*if (mainCamera != null)
-                {
-                    // Freeze the camera position and rotation by setting them to the initial values
-                    mainCamera.transform.position = initialPosition;
-                    mainCamera.transform.rotation = initialRotation;
-                }*/
+
+                // Calculate the position in front of the camera
+                Vector3 menuPosition = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
+                globalMenu.transform.position = menuPosition;
+
+                // Calculate the rotation to face the camera
+                Quaternion rotationToCamera = Quaternion.LookRotation(mainCamera.transform.forward, mainCamera.transform.up);
+                globalMenu.transform.rotation = rotationToCamera;
 
                 // Disable the OutlineObject
                 if (outlineObject != null)
                 {
                     outlineObject.SetActive(false);
-                }
-
-                // Set the initial selected button
-                if (resumeButton != null)
-                {
-                    resumeButton.Select();
                 }
             }
         }
@@ -109,38 +93,6 @@ public class GlobalMenuController : MonoBehaviour
         }
     }
 
-    void NavigateMenu(bool moveDown)
-    {
-        int currentIndex = GetSelectedButtonIndex();
-
-        if (currentIndex != -1)
-        {
-            int nextIndex = currentIndex + (moveDown ? 1 : -1);
-            nextIndex = Mathf.Clamp(nextIndex, 0, menuButtons.Length - 1);
-            menuButtons[nextIndex].Select();
-        }
-    }
-
-    void InvokeSelectedButton()
-    {
-        Button selectedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-        if (selectedButton != null)
-        {
-            selectedButton.onClick.Invoke();
-        }
-    }
-
-    int GetSelectedButtonIndex()
-    {
-        for (int i = 0; i < menuButtons.Length; i++)
-        {
-            if (menuButtons[i].gameObject == EventSystem.current.currentSelectedGameObject)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
     public void StoreCheckout()
     {
         if (StoreCheckoutText != null)
@@ -148,11 +100,11 @@ public class GlobalMenuController : MonoBehaviour
             StoreCheckoutText.gameObject.SetActive(true);
 
             // Calculate the position in front of the camera
-            Vector3 textPosition = Camera.main.transform.position + Camera.main.transform.forward * 2f;
+            Vector3 textPosition = mainCamera.transform.position + mainCamera.transform.forward * 2f;
             StoreCheckoutText.transform.position = textPosition;
 
             // Calculate the rotation to face the camera
-            Vector3 directionToCamera = Camera.main.transform.position - StoreCheckoutText.transform.position;
+            Vector3 directionToCamera = mainCamera.transform.position - StoreCheckoutText.transform.position;
             Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
             rotationToCamera *= Quaternion.Euler(0f, 180f, 0f); // Adjust rotation as needed
 
@@ -161,29 +113,26 @@ public class GlobalMenuController : MonoBehaviour
 
             // Start coroutine to deactivate the text after 3 seconds
             StartCoroutine(DeactivateStoreCheckoutText());
-
-
         }
     }
+
     IEnumerator DeactivateStoreCheckoutText()
     {
         globalMenu.SetActive(false);
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
         Application.Quit();
-
     }
+
     public void BacktoLobby()
     {
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Lobby");
         //MenuManager.Instance.OpenMenu("Loading");
-        
     }
 
     public void Quit()
     {
         Application.Quit();
     }
-
 }

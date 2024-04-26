@@ -67,7 +67,7 @@ public class HomeOutline : MonoBehaviourPun
             isScaled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && lastHoveredObject != null)
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
         {
             lastInteractedObject = lastHoveredObject;
             if (isScaled && ObjectMenuPanel != null)
@@ -89,11 +89,11 @@ public class HomeOutline : MonoBehaviourPun
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && lastHoveredObject != null)
+        if ((Input.GetKeyDown(KeyCode.R)|| Input.GetButton("Cancel")) && lastHoveredObject != null)
         {
             isRotating = true;
         }
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R) || Input.GetButton("Cancel"))
         {
             isRotating = false;
         }
@@ -104,7 +104,7 @@ public class HomeOutline : MonoBehaviourPun
         }
 
         // Check if T key is pressed
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) || Input.GetButton("js3"))
         {
             ToggleObjectAttachment(); // Toggle object attachment
         }
@@ -166,6 +166,7 @@ public class HomeOutline : MonoBehaviourPun
         else
         {
             isObjectAttached = false;
+            highlightedObject = null; // Reset highlighted object when attachment is toggled off
         }
     }
 
@@ -176,15 +177,15 @@ public class HomeOutline : MonoBehaviourPun
 
         if (Physics.Raycast(ray, out hit))
         {
-            // Check if the hit object is the highlighted object
-            if (hit.collider.gameObject == highlightedObject)
+            // Check if the hit object is the highlighted object and object attachment is enabled
+            if (hit.collider.gameObject == highlightedObject && isObjectAttached)
             {
-                // Set the position of the attached object to the intersection point
-                highlightedObject.transform.position = hit.point;
+                // Set the position of the attached object to follow the raycast on the X and Z axes
+                Vector3 newPosition = new Vector3(hit.point.x, highlightedObject.transform.position.y, hit.point.z);
+                highlightedObject.transform.position = newPosition;
             }
         }
     }
-
 
 
     public void ExitMenu()

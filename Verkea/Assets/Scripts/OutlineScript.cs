@@ -54,9 +54,9 @@ public class OutlineScript : MonoBehaviourPun
             isScaled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && lastHoveredObject != null)
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
         {
-            lastInteractedObject = lastHoveredObject; 
+            lastInteractedObject = lastHoveredObject;
             if (isScaled && ObjectMenuPanel != null)
             {
                 ObjectMenuPanel.SetActive(true);
@@ -118,7 +118,7 @@ public class OutlineScript : MonoBehaviourPun
 
     public void TryFurniture()
     {
-        Debug.Log("try furniture clicked " );
+        Debug.Log("try furniture clicked ");
         if (lastInteractedObject != null)
         {
             string furnitureName = lastInteractedObject.name;
@@ -130,3 +130,6 @@ public class OutlineScript : MonoBehaviourPun
     }
 
 }
+
+
+//Working outline script

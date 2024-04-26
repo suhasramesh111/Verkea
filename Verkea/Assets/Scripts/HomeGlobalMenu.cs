@@ -22,6 +22,7 @@ public class HomeGlobalMenu : MonoBehaviour
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
     private Button[] menuButtons; // Array to store menu buttons
+    private float distanceFromCamera = 2f; // Adjust as needed
 
     void Start()
     {
@@ -42,11 +43,11 @@ public class HomeGlobalMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) || Input.GetButton("js11"))
         {
             ToggleGlobalMenu(); // Toggle the global menu when 'G' key is pressed
         }
-        else if (menuActive)
+       /* else if (menuActive)
         {
             // Handle manual navigation with arrow keys
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -58,7 +59,7 @@ public class HomeGlobalMenu : MonoBehaviour
             {
                 InvokeSelectedButton();
             }
-        }
+        }*/
     }
 
     void ToggleGlobalMenu()
@@ -71,14 +72,14 @@ public class HomeGlobalMenu : MonoBehaviour
                 menuActive = true;
                 globalMenu.SetActive(true); // Enable the global menu
                 Time.timeScale = 0f; // Freeze the game
-                /*
-                if (mainCamera != null)
-                {
-                    // Freeze the camera position and rotation by setting them to the initial values
-                    mainCamera.transform.position = initialPosition;
-                    mainCamera.transform.rotation = initialRotation;
-                }
-                */
+
+                // Calculate the position in front of the camera
+                Vector3 menuPosition = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
+                globalMenu.transform.position = menuPosition;
+
+                // Calculate the rotation to face the camera
+                Quaternion rotationToCamera = Quaternion.LookRotation(mainCamera.transform.forward, mainCamera.transform.up);
+                globalMenu.transform.rotation = rotationToCamera;
 
                 // Disable the OutlineObject
                 if (outlineObject != null)
@@ -87,10 +88,10 @@ public class HomeGlobalMenu : MonoBehaviour
                 }
 
                 // Set the initial selected button
-                if (resumeButton != null)
+                /*if (resumeButton != null)
                 {
                     resumeButton.Select();
-                }
+                }*/
             }
         }
     }
@@ -112,7 +113,7 @@ public class HomeGlobalMenu : MonoBehaviour
         }
     }
 
-    void NavigateMenu(bool moveDown)
+   /* void NavigateMenu(bool moveDown)
     {
         int currentIndex = GetSelectedButtonIndex();
 
@@ -144,7 +145,7 @@ public class HomeGlobalMenu : MonoBehaviour
         }
         return -1;
     }
-
+   */
     public void Checkout()
     {
         if (CheckoutText != null)
