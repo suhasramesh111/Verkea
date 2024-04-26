@@ -63,7 +63,7 @@ public class OutlineScript : MonoBehaviourPun
 
                 if (lastHoveredObject != null)
                 {
-                    Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 30f;
+                    Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 5f;
                     ObjectMenuPanel.transform.position = panelPosition;
 
                     Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
