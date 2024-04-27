@@ -84,7 +84,9 @@ public class OutlineScript : MonoBehaviourPun
 
         if (Physics.SphereCast(ray, 0.1f, out hit))
         {
-            return hit.collider.gameObject;
+            // Get the root parent of the hit object
+            Transform rootParent = hit.transform.root;
+            return rootParent.gameObject;
         }
 
         return null;
@@ -126,10 +128,7 @@ public class OutlineScript : MonoBehaviourPun
             PlayerPrefs.SetString("SelectedFurniture", furnitureName);
             FurniturePlacementScript.Instance.TryFurniture();
             ObjectMenuPanel.SetActive(false);
-        }
-    }
+        }
+    }
 
 }
-
-
-//Working outline script

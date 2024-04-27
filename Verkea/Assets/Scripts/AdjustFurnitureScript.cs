@@ -33,11 +33,11 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
 
         // Calculate the position for the new furniture
         Vector3 newPosition = Camera.main.transform.position + Camera.main.transform.forward * 5;
-        newPosition.x += 5.0f;
+        newPosition.x += 1.0f;
 
         // Use the character's camera Y-coordinate for the furniture's Y-coordinate
-        newPosition.y = -40f;
-
+        newPosition.y = 0.5f;
+    
         // Check for collisions
         Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.5f);
         while (hitColliders.Length > 0)
@@ -59,7 +59,7 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
         newFurniture.name = furnitureName + "_" + photonView.ViewID;
 
         // Adjust the scale of the new furniture
-        newFurniture.transform.localScale = new Vector3(8, 8, 8);
+        newFurniture.transform.localScale = new Vector3(1, 1, 1);
 
         // Add the 'Interactable' tag
         newFurniture.tag = "Interactable";
