@@ -29,10 +29,13 @@ public class MenuManager : MonoBehaviour
 
     public void OpenMenu(string menuName)
     {
+        
+
         for (int i = 0; i < menus.Length; i++)
         {
             if (menus[i].menuName == menuName)
             {
+                Time.timeScale = 0f;
                 OpenMenu(menus[i]);
             }
             else if (menus[i].open)
@@ -52,19 +55,20 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        // Calculate the position in front of the camera
-        Vector3 menuPosition = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
-        menu.transform.position = menuPosition;
+        // // Calculate the position in front of the camera
+        // Vector3 menuPosition = mainCamera.transform.position + mainCamera.transform.forward * distanceFromCamera;
+        // menu.transform.position = menuPosition;
 
-        // Calculate the rotation to face the camera
-        Quaternion rotationToCamera = Quaternion.LookRotation(mainCamera.transform.forward, mainCamera.transform.up);
-        menu.transform.rotation = rotationToCamera;
+        // // Calculate the rotation to face the camera
+        // Quaternion rotationToCamera = Quaternion.LookRotation(mainCamera.transform.forward, mainCamera.transform.up);
+        // menu.transform.rotation = rotationToCamera;
 
         menu.Open();
     }
 
     public void CloseMenu(LoadingMenuScript menu)
     {
+        Time.timeScale = 1f;
         menu.Close();
     }
 }
