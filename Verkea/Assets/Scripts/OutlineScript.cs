@@ -10,6 +10,7 @@ public class OutlineScript : MonoBehaviourPun
     private bool isScaled = false;
     public GameObject ObjectMenuPanel;
     private Dictionary<GameObject, Vector3> originalSizes = new Dictionary<GameObject, Vector3>();
+    private float distanceFromCamera = 1f; // Adjust as neede
 
     void Awake()
     {
@@ -21,6 +22,16 @@ public class OutlineScript : MonoBehaviourPun
 
     void Update()
     {
+
+        if (ObjectMenuPanel.activeSelf)
+        {
+            Time.timeScale = 0f; // Pause the game
+        }
+        else
+        {
+            Time.timeScale = 1f; // Resume the game
+        }
+
         GameObject currentObject = GetObjectUnderReticle();
 
         if (currentObject != lastHoveredObject)
@@ -54,6 +65,28 @@ public class OutlineScript : MonoBehaviourPun
             isScaled = false;
         }
 
+        /* if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
+         {
+             lastInteractedObject = lastHoveredObject;
+             if (isScaled && ObjectMenuPanel != null)
+             {
+                 ObjectMenuPanel.SetActive(true);
+
+                 if (lastHoveredObject != null)
+                 {
+                     Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 5f;
+                     ObjectMenuPanel.transform.position = panelPosition;
+
+                     Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
+                     Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
+
+                     rotationToCamera *= Quaternion.Euler(0f, 180f, 0f);
+
+                     ObjectMenuPanel.transform.rotation = rotationToCamera;
+                 }
+             }
+         }*/
+
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
         {
             lastInteractedObject = lastHoveredObject;
@@ -63,18 +96,17 @@ public class OutlineScript : MonoBehaviourPun
 
                 if (lastHoveredObject != null)
                 {
-                    Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 5f;
-                    ObjectMenuPanel.transform.position = panelPosition;
+                    // Calculate the position in front of the camera
+                    Vector3 menuPosition = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
+                    ObjectMenuPanel.transform.position = menuPosition;
 
-                    Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
-                    Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
-
-                    rotationToCamera *= Quaternion.Euler(0f, 180f, 0f);
-
+                    // Calculate the rotation to face the camera
+                    Quaternion rotationToCamera = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
                     ObjectMenuPanel.transform.rotation = rotationToCamera;
                 }
             }
         }
+
     }
 
     GameObject GetObjectUnderReticle()

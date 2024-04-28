@@ -17,6 +17,7 @@ public class HomeOutline : MonoBehaviourPun
     private bool isObjectAttached = false; // Flag to track if the highlighted object is attached to the raycast
     private GameObject highlightedObject; // Reference to the highlighted object
     private float rotationSpeed = 50f; // Adjust rotation speed as needed
+    private float distanceFromCamera = 1f; // Adjust as needed
 
     void Awake()
     {
@@ -28,6 +29,14 @@ public class HomeOutline : MonoBehaviourPun
 
     void Update()
     {
+        if (ObjectMenuPanel.activeSelf)
+        {
+            Time.timeScale = 0f; // Pause the game
+        }
+        else
+        {
+            Time.timeScale = 1f; // Resume the game
+        }
         GameObject currentObject = GetObjectUnderReticle();
 
         if (currentObject != lastHoveredObject)
@@ -67,6 +76,27 @@ public class HomeOutline : MonoBehaviourPun
             isScaled = false;
         }
 
+        /*   if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
+           {
+               lastInteractedObject = lastHoveredObject;
+               if (isScaled && ObjectMenuPanel != null)
+               {
+                   ObjectMenuPanel.SetActive(true);
+
+                   if (lastHoveredObject != null)
+                   {
+                       Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 2f;
+                       ObjectMenuPanel.transform.position = panelPosition;
+
+                       Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
+                       Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
+
+                       rotationToCamera *= Quaternion.Euler(0f, 180f, 0f);
+
+                       ObjectMenuPanel.transform.rotation = rotationToCamera;
+                   }
+               }
+           }*/
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetButton("js2")) && lastHoveredObject != null)
         {
             lastInteractedObject = lastHoveredObject;
@@ -76,20 +106,18 @@ public class HomeOutline : MonoBehaviourPun
 
                 if (lastHoveredObject != null)
                 {
-                    Vector3 panelPosition = lastHoveredObject.transform.position + Vector3.up * 2f;
-                    ObjectMenuPanel.transform.position = panelPosition;
+                    // Calculate the position in front of the camera
+                    Vector3 menuPosition = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
+                    ObjectMenuPanel.transform.position = menuPosition;
 
-                    Vector3 directionToCamera = Camera.main.transform.position - ObjectMenuPanel.transform.position;
-                    Quaternion rotationToCamera = Quaternion.LookRotation(directionToCamera);
-
-                    rotationToCamera *= Quaternion.Euler(0f, 180f, 0f);
-
+                    // Calculate the rotation to face the camera
+                    Quaternion rotationToCamera = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
                     ObjectMenuPanel.transform.rotation = rotationToCamera;
                 }
             }
         }
 
-        if ((Input.GetKeyDown(KeyCode.R)|| Input.GetButton("Cancel")) && lastHoveredObject != null)
+        if ((Input.GetKeyDown(KeyCode.R)|| Input.GetButton("Cancel") || Input.GetButton("js1"))) //&& lastHoveredObject != null
         {
             isRotating = true;
         }

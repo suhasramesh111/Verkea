@@ -164,6 +164,7 @@ public class HomeGlobalMenu : MonoBehaviour
             // Apply the rotation
             CheckoutText.transform.rotation = rotationToCamera;
 
+            Application.Quit();
             // Start coroutine to deactivate the text after 3 seconds
             StartCoroutine(DeactivateCheckoutText());
             
@@ -175,7 +176,7 @@ public class HomeGlobalMenu : MonoBehaviour
         globalMenu.SetActive(false);
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
-        Application.Quit();
+        
 
     }
 

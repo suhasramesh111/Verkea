@@ -113,6 +113,7 @@ public class GlobalMenuController : MonoBehaviour
 
             // Start coroutine to deactivate the text after 3 seconds
             StartCoroutine(DeactivateStoreCheckoutText());
+            Application.Quit();
         }
     }
 
@@ -121,7 +122,7 @@ public class GlobalMenuController : MonoBehaviour
         globalMenu.SetActive(false);
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
-        Application.Quit();
+        
     }
 
     public void BacktoLobby()
