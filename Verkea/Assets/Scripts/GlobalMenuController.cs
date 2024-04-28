@@ -113,24 +113,42 @@ public class GlobalMenuController : MonoBehaviour
 
             // Start coroutine to deactivate the text after 3 seconds
             StartCoroutine(DeactivateStoreCheckoutText());
-            Application.Quit();
         }
     }
-
     IEnumerator DeactivateStoreCheckoutText()
     {
-        globalMenu.SetActive(false);
-        // Wait for 3 seconds
-        yield return new WaitForSeconds(3f);
-        
+        // Deactivate the canvas
+        globalMenu.SetActive(false); 
+        Time.timeScale = 1f;
+
+        Debug.Log("deactivate store checkout called");
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds with the canvas visible
+        Debug.Log("After yield");
+
+        PhotonNetwork.LoadLevel(0);
+
+        // Leave the current room if in a Photon network
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+
+        // Load the lobby scene
     }
 
-    public void BacktoLobby()
-    {
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("Lobby");
-        //MenuManager.Instance.OpenMenu("Loading");
-    }
+
+    // public void BacktoLobby()
+    // {
+    //     Debug.Log("in back to lobby function");
+    //     PhotonNetwork.LeaveRoom();
+    //     // Leave the current room if in a Photon network
+    //     // if (PhotonNetwork.InRoom)
+    //     // {
+    //     //     PhotonNetwork.LeaveRoom();
+    //     // }
+    //     SceneManager.LoadScene("Lobby");
+    //     //MenuManager.Instance.OpenMenu("Loading");
+    // }
 
     public void Quit()
     {
