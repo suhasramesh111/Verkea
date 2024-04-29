@@ -10,7 +10,7 @@ public class OutlineScript : MonoBehaviourPun
     private bool isScaled = false;
     public GameObject ObjectMenuPanel;
     private Dictionary<GameObject, Vector3> originalSizes = new Dictionary<GameObject, Vector3>();
-    private float distanceFromCamera = 1f; // Adjust as neede
+    private float distanceFromCamera = 0.1f; // Adjust as neede
 
     void Awake()
     {

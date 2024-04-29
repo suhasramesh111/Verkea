@@ -45,7 +45,7 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
         newPosition += character.transform.forward * 1.0f;
 
         // Use the character's Y-coordinate for the furniture's Y-coordinate
-        newPosition.y = 1.0f;
+        newPosition.y = 0.3f;
     
         // Check for collisions
         Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.0f);
@@ -65,6 +65,6 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
         //newFurniture.transform.parent = null;
 
         // Adjust the scale of the new furniture
-        // newFurniture.transform.localScale = new Vector3(1, 1, 1);
+        newFurniture.transform.localScale = new Vector3(1, 1, 1);
     }
 }

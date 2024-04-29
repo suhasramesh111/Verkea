@@ -17,7 +17,7 @@ public class HomeOutline : MonoBehaviourPun
     private bool isObjectAttached = false; // Flag to track if the highlighted object is attached to the raycast
     private GameObject highlightedObject; // Reference to the highlighted object
     private float rotationSpeed = 50f; // Adjust rotation speed as needed
-    private float distanceFromCamera = 1f; // Adjust as needed
+    private float distanceFromCamera = 0.1f; // Adjust as needed
 
     void Awake()
     {
@@ -117,7 +117,7 @@ public class HomeOutline : MonoBehaviourPun
             }
         }
 
-        if ((Input.GetKeyDown(KeyCode.R)|| Input.GetButton("Cancel") || Input.GetButton("js1"))) //&& lastHoveredObject != null
+        if ((Input.GetKeyDown(KeyCode.R)|| (Input.GetButton("Cancel") && Input.GetButton("js1")))) //&& lastHoveredObject != null
         {
             isRotating = true;
         }
@@ -179,6 +179,44 @@ public class HomeOutline : MonoBehaviourPun
         obj.transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
     }
 
+void ToggleObjectAttachment()
+    {
+        if (!isObjectAttached && lastHoveredObject != null)
+        {
+            isObjectAttached = true;
+            highlightedObject = lastHoveredObject;
+
+            // Reset size if scaled
+            if (isScaled)
+            {
+                ResetSize(highlightedObject); 
+                isScaled = false;
+            }
+        }
+        else
+        {
+            isObjectAttached = false;
+            highlightedObject = null; 
+        }
+    }
+
+    void MoveObjectWithRaycast()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject == highlightedObject && isObjectAttached)
+            {
+                Vector3 newPosition = new Vector3(hit.point.x, highlightedObject.transform.position.y, hit.point.z);
+                highlightedObject.transform.position = newPosition;
+            }
+        }
+    }
+
+
+/*
     void ToggleObjectAttachment()
     {
         if (!isObjectAttached && lastHoveredObject != null)
@@ -214,7 +252,7 @@ public class HomeOutline : MonoBehaviourPun
             }
         }
     }
-
+*/
 
     public void ExitMenu()
     {

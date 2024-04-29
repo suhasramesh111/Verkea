@@ -13,7 +13,8 @@ using TMPro;
 public class GlobalMenuController : MonoBehaviour
 {
     public TextMeshProUGUI StoreCheckoutText;
-    public GameObject globalMenu; // Reference to the global menu GameObject
+    public GameObject globalMenu; 
+    public GameObject objectMenu; // Reference to the global menu GameObject
     public Camera mainCamera; // Reference to the main camera
     public GameObject outlineObject; // Reference to the OutlineObject
     public Button resumeButton; // Reference to the Resume button
@@ -21,7 +22,7 @@ public class GlobalMenuController : MonoBehaviour
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
     private Button[] menuButtons; // Array to store menu buttons
-    private float distanceFromCamera = 4f; // Adjust as needed
+    private float distanceFromCamera = 0.1f; // Adjust as needed
 
     void Start()
     {
@@ -71,6 +72,10 @@ public class GlobalMenuController : MonoBehaviour
                 if (outlineObject != null)
                 {
                     outlineObject.SetActive(false);
+                }
+                 if (objectMenu != null)
+                {
+                    objectMenu.SetActive(false);
                 }
             }
         }

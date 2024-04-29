@@ -15,6 +15,7 @@ public class HomeGlobalMenu : MonoBehaviour
 {
     public TextMeshProUGUI CheckoutText;
     public GameObject globalMenu; // Reference to the global menu GameObject
+    public GameObject objectMenu;
     public Camera mainCamera; // Reference to the main camera
     public GameObject outlineObject; // Reference to the OutlineObject
     public Button resumeButton; // Reference to the Resume button
@@ -22,7 +23,7 @@ public class HomeGlobalMenu : MonoBehaviour
     private Quaternion initialRotation; // Store the initial rotation of the camera
     private bool menuActive = false; // Flag to track if the global menu is active
     private Button[] menuButtons; // Array to store menu buttons
-    private float distanceFromCamera = 2f; // Adjust as needed
+    private float distanceFromCamera = 0.1f; // Adjust as needed
 
     void Start()
     {
@@ -86,6 +87,11 @@ public class HomeGlobalMenu : MonoBehaviour
                 {
                     outlineObject.SetActive(false);
                 }
+                if (objectMenu != null)
+                {
+                    objectMenu.SetActive(false);
+                }
+
 
                 // Set the initial selected button
                 /*if (resumeButton != null)
@@ -164,7 +170,7 @@ public class HomeGlobalMenu : MonoBehaviour
             // Apply the rotation
             CheckoutText.transform.rotation = rotationToCamera;
 
-            Application.Quit();
+            
             // Start coroutine to deactivate the text after 3 seconds
             StartCoroutine(DeactivateCheckoutText());
             
