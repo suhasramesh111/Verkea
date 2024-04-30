@@ -29,24 +29,38 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
         StartCoroutine(WaitAndAdjustFurniture(furnitureName));
     }
 
+
     IEnumerator WaitAndAdjustFurniture(string furnitureName)
     {
         // Wait for the next frame to ensure that the furniture has been instantiated
         yield return new WaitForEndOfFrame();
 
-        Debug.Log("received furniture " +furnitureName);
+        Debug.Log("received furniture " + furnitureName);
 
-        // Calculate the position for the new furniture
-        //Vector3 newPosition = character.transform.position + character.transform.forward * 3;
         // Copy the position of the character in world space
         Vector3 newPosition = character.transform.position;
 
-        // Place the object in front of the character
-        newPosition += character.transform.forward * 1.0f;
+        // Place the object 2 units in front of the character
+        newPosition += character.transform.forward * 4.0f;
+        GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
+        float scaleFactor = 0.3f; // 30% of the original size
+        newFurniture.transform.localScale = new Vector3(
+            newFurniture.transform.localScale.x * scaleFactor,
+            newFurniture.transform.localScale.y * scaleFactor,
+            newFurniture.transform.localScale.z * scaleFactor
+        );
 
-        // Use the character's Y-coordinate for the furniture's Y-coordinate
-        newPosition.y = 0.3f;
-    
+        // Use a Raycast to find the Y-coordinate of the floor
+        RaycastHit hit;
+        if (Physics.Raycast(newPosition + Vector3.up, Vector3.down, out hit))
+        {
+            // Check if the raycast hit the floor
+            if (hit.collider.gameObject.CompareTag("Floor"))
+            {
+                newPosition.y = hit.point.y; // Adjust the Y-coordinate to be on the floor
+            }
+        }
+
         // Check for collisions
         Collider[] hitColliders = Physics.OverlapSphere(newPosition, 1.0f);
         while (hitColliders.Length > 0 && hitColliders.Any(collider => collider.gameObject.CompareTag("Interactable")))
@@ -57,14 +71,9 @@ public class AdjustFurnitureScript : MonoBehaviourPunCallbacks
             hitColliders = Physics.OverlapSphere(newPosition, 1.0f);
         }
 
-
-
-        // Instantiate the new furniture object with a unique name and PhotonView ID
-        GameObject newFurniture = PhotonNetwork.Instantiate(furnitureName, newPosition, Quaternion.identity);
-        // Set the parent to null to make the position in world space
-        //newFurniture.transform.parent = null;
-
-        // Adjust the scale of the new furniture
-        newFurniture.transform.localScale = new Vector3(1, 1, 1);
+        // Set the final position of the furniture
+        newFurniture.transform.position = newPosition;
     }
+
+
 }

@@ -21647,7 +21647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1131037439150511929, guid: b5024af7ea2fdf847bd80b9aabe12337, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -553.13
+      value: -553.16
       objectReference: {fileID: 0}
     - target: {fileID: 1131037439150511929, guid: b5024af7ea2fdf847bd80b9aabe12337, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21655,7 +21655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1131037439150511929, guid: b5024af7ea2fdf847bd80b9aabe12337, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.24
+      value: 18.56
       objectReference: {fileID: 0}
     - target: {fileID: 1131037439150511929, guid: b5024af7ea2fdf847bd80b9aabe12337, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25998,6 +25998,10 @@ PrefabInstance:
     - target: {fileID: 6428110839528568794, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: m_Name
       value: ShopCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428110839528568794, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6428110839528568798, guid: 7c7529c4103ad054c8f67104ed2444ee, type: 3}
       propertyPath: speed

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1095686819}
-  m_IndirectSpecularColor: {r: 0.35813272, g: 0.18552837, b: 0.30850458, a: 1}
+  m_IndirectSpecularColor: {r: 0.35830358, g: 0.18557529, b: 0.3086274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2052,7 +2052,7 @@ GameObject:
   - component: {fileID: 980045366}
   m_Layer: 0
   m_Name: LobbyCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3557,6 +3557,7 @@ GameObject:
   - component: {fileID: 1707676097}
   - component: {fileID: 1707676096}
   - component: {fileID: 1707676099}
+  - component: {fileID: 1707676100}
   m_Layer: 0
   m_Name: VoiceManager
   m_TagString: Untagged
@@ -3674,6 +3675,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eef8b77bcbfe8e7448d8ed9a36dce6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1707676100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707676095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb33c0ff1d3254e80cbcfd5c7c9caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1751128094
