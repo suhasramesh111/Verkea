@@ -117,11 +117,12 @@ public class HomeOutline : MonoBehaviourPun
             }
         }
 
-        if ((Input.GetKeyDown(KeyCode.R)|| (Input.GetButton("Cancel") && Input.GetButton("js1")))) //&& lastHoveredObject != null
+        if ((Input.GetKeyDown(KeyCode.R)|| Input.GetButton("js3"))) //&& lastHoveredObject != null
         {
             isRotating = true;
         }
-        if (Input.GetKeyUp(KeyCode.R) || Input.GetButton("Cancel"))
+        // if (Input.GetKeyUp(KeyCode.R) || Input.GetButtonDown("js3"))
+        else
         {
             isRotating = false;
         }
@@ -132,7 +133,7 @@ public class HomeOutline : MonoBehaviourPun
         }
 
         // Check if T key is pressed
-        if (Input.GetKeyDown(KeyCode.T) || Input.GetButton("js3"))
+        if (Input.GetKeyDown(KeyCode.T) || Input.GetButton("js10"))
         {
             ToggleObjectAttachment(); // Toggle object attachment
         }

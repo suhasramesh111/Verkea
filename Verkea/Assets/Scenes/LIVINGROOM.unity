@@ -9139,6 +9139,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 334585567}
     - target: {fileID: 280973936809515906, guid: 4a6bd32abd14a854caf3ba98f901a28e, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 280973936809515906, guid: 4a6bd32abd14a854caf3ba98f901a28e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -9568,7 +9572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 280973938083479265, guid: 4a6bd32abd14a854caf3ba98f901a28e, type: 3}
       propertyPath: m_TagString
-      value: Floor
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 280973938106741825, guid: 4a6bd32abd14a854caf3ba98f901a28e, type: 3}
       propertyPath: m_Mesh
@@ -10249,7 +10253,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-75498
+  m_Name: pb_Mesh-58998
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
